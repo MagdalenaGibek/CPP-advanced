@@ -2,34 +2,35 @@
 class Vector
 {
 public:
+	Vector(); // konstruktor domyslny, tworzy pusty wektor
+	Vector(unsigned int capacity); // rezerwuje miejsca na podana liczbe elementow
+	Vector(const Vector& old); //c-tor kopiuj¹cy
+	virtual ~Vector(); //d-tor
 
-	Vector(); // konstruktor domyślny, tworzy pusty vector
-	Vector(unsigned int capacity); // rezerwuje miejsca na podaną liczbę elementów 
-	Vector(const Vector& old); // c-tor kopiujący
-	virtual~Vector(); // d-tor
+	void reserve(unsigned int capacity); // zwiêksza rozmiar zarezerwowanej pamieci vectora, ale nie mozna zmienjszyc
 
-	void reserve(unsigned int capacity); // zwiększa rozmiar zarezerwowanej pamięci vectora;
-	//void resize(unsigned int size); // pozwala zmniejszyć rozmiar vectora,
-	 //Gettery
-	unsigned int size() const;
+	//Gettery:
 	unsigned int capacity() const;
+	unsigned int size() const;
 	bool empty() const;
 
-	void remove(unsigned int position); // pozwala wstawić wartość do wektora na zadane pozycje
-	void insert(int value, unsigned int position); // usuwa element z wektora
-	void reserve(unsigned int capacity);
-	void clear(); // usuwa wszystkie elementy z wektora, jendka nie zmniejsza zrezerwowanej pamięci
-	void push_back(const int& value); // odkłada element na ostatnie wolne miejsce
-	//void pop_back(const int& value); // odkłada 
-	int& operator[](unsigned int i); // operator dostępu do danych na danej pozycji
-	Vector& operator=(const Vector&); // to samo co c-tor kopiujący
-	
+	void insert(int value, unsigned int index); //pozwala wstawic wartosc do wektora na zadana pozycje
+	void remove(unsigned int index); //usuwa element z wektora
+	void clear(); //usuwa wszystkie elementy zwektora, jednak nie zmniejsza zarezerwowanej pamieci
+	void push_back(const int& value); // odklada element na ostatnie wolne miejsce 
+
+
+	int& operator[](unsigned int position); //operator dostepu do danych na podanej pozycji
+	Vector& operator=(const Vector& other); //to samo co c-tor kopiujacy
+
+	//Praca domowa:
+	void copyTo(Vector& other, unsigned int index); //skopiuj zawartosc wektora other w podane miejsce,
+	void remove(unsigned int from, unsigned int to); //usuwa wiele wartosci od indeksu from do indeksu to
+	void pop_back(); // usuwa ostatni element
+	void bubbleSort(); //sortowanie za pomoc¹ algorytmu sortowania babelkowego
+
 private:
 	unsigned int _size;
 	unsigned int _capacity;
-	int* _data; // inna notacja mData, m od member;
+	int* _data;
 };
-
-//Vector vect;
-//int i = vect[1];
-//tab[1];
